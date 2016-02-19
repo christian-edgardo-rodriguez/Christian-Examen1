@@ -14,6 +14,7 @@ void llenarMatriz(int** array, int size);
 bool validacionPieza(int** array, int x, int y, int pieza);
 bool validacionMove(int** array, int x, int y, int piezaX,int piezaY);
 void movimiento(int** array,int size, int xPos, int yPos, int pieza);
+void conversion(int** array, int xPos, int yPos, int pieza);
 
 int main(int argc, char const *argv[]){
 	int size=7, bandera=1, xPieza, yPieza, xPos, yPos;
@@ -38,6 +39,7 @@ int main(int argc, char const *argv[]){
 						bool movJug1= validacionMove(arreglo, xPos, yPos, xPieza, yPieza);
 						if (movJug1==false){
 							movimiento(arreglo, size, xPos, yPos, 1);
+							conversion(arreglo, xPos, yPos, 1);
 						}
 					}else{
 						cout<<"Esta posicion no existe"<<endl;
@@ -67,6 +69,7 @@ int main(int argc, char const *argv[]){
 						bool movJug2= validacionMove(arreglo, xPos, yPos, xPieza, yPieza);
 						if (movJug2==false){
 							movimiento(arreglo, size, xPos, yPos, 5);
+							conversion(arreglo, xPos, yPos, 5);
 						}			
 					}else{
 						cout<<"Esta posicion no existe"<<endl;
@@ -141,4 +144,117 @@ bool validacionMove(int** array, int xPos, int yPos, int xPieza, int yPieza){
 void movimiento(int** array,int size, int xPos, int yPos, int pieza){
 	array[xPos][yPos]=pieza;
 	imprimirMatriz(array, size);
+}
+void conversion(int** array, int xPos, int yPos, int pieza){
+	int cambio;
+	if (pieza==1){
+		cambio=5;
+	}else if (pieza==5){
+		cambio=1;
+	}if (xPos==0&&yPos==0){
+		for (int i = xPos; i <= xPos+1; ++i){
+			for (int j = yPos; j <= yPos+1; ++j){
+				if (array[i][j] == cambio){
+					array[i][j] = pieza;	
+				}
+			}
+		}
+	}else if (xPos==0&&yPos==6){
+		for (int i = 0; i < 1; ++i){
+			for (int j = 5; j <= 6; ++j){
+				if (array[i][j] == cambio){
+					array[i][j] = pieza;	
+				}
+			}
+		}
+	}else if (xPos==6&&yPos==0){
+		for (int i = 5; i < 6; ++i){
+			for (int j = 0; j < 1; ++j){
+				if (array[i][j] == cambio){
+					array[i][j] = pieza;	
+				}
+			}
+		}
+	}else if (xPos==6&&yPos==6){
+		for (int i = 5; i <= 6; ++i){
+			for (int j = 5; j <= 6; ++j){
+				if (array[i][j] == cambio){
+					array[i][j] = pieza;	
+				}
+			}
+		}
+	}else if (xPos==0&&yPos==0){
+		for (int i = xPos; i <= xPos+1; ++i){
+			for (int j = yPos; j <= yPos+1; ++j){
+				if (array[i][j] == cambio){
+					array[i][j] = pieza;	
+				}
+			}
+		}
+	}else if (xPos==0&&yPos==6){
+		for (int i = 0; i < 1; ++i){
+			for (int j = 5; j <= 6; ++j){
+				if (array[i][j] == cambio){
+					array[i][j] = pieza;	
+				}
+			}
+		}
+	}else if (xPos==6&&yPos==0){
+		for (int i = 5; i < 6; ++i){
+			for (int j = 0; j < 1; ++j){
+				if (array[i][j] == cambio){
+					array[i][j] = pieza;	
+				}
+			}
+		}
+	}else if (xPos==6&&yPos==6){
+		for (int i = 5; i <= 6; ++i){
+			for (int j = 5; j <= 6; ++j){
+				if (array[i][j] == cambio){
+					array[i][j] = pieza;	
+				}
+			}
+		}
+	}
+	else if (yPos==0){
+		for (int i = xPos- 1; i < xPos + 2; ++i){
+			for (int j = 0; j <= 1; ++j){
+				if (array[i][j] == cambio){
+					array[i][j] = pieza;	
+				}
+			}
+		}
+	}else if (xPos==0){
+		for (int i = 0; i <= 1; ++i){
+			for (int j = yPos - 1; j < yPos + 2; ++j){
+				if (array[i][j] == cambio){
+					array[i][j] = pieza;	
+				}
+			}
+		}
+	}else if (yPos==6){
+		for (int i = xPos- 1; i < xPos + 2; ++i){
+			for (int j = 5; j <= 6; ++j){
+				if (array[i][j] == cambio){
+					array[i][j] = pieza;	
+				}
+			}
+		}
+	}else if (xPos==6){
+		for (int i = 5; i < 6; ++i){
+			for (int j = yPos - 1; j < yPos + 2; ++j){
+				if (array[i][j] == cambio){
+					array[i][j] = pieza;	
+				}
+			}
+		}
+	}else{
+		for (int i = xPos- 1; i < xPos + 2; ++i){
+			for (int j = yPos - 1; j < yPos + 2; ++j){
+				if (array[i][j] == cambio){
+					array[i][j] = pieza;	
+				}
+			}
+		}
+	}
 }
