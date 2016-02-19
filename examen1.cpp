@@ -13,10 +13,12 @@ bool validacionPieza(int** array, int x, int y, int pieza);
 bool validacionMove(int** array, int x, int y, int piezaX,int piezaY);
 void movimiento(int** array,int size, int xPos, int yPos, int pieza);
 void conversion(int** array, int xPos, int yPos, int pieza);
+void imprimirLetras(char* letras, int num);
 
 int main(int argc, char const *argv[]){
 	int size=7, bandera=1, xPieza, yPieza, xPos, yPos;
 	int** arreglo=newArray();
+	char letras[]={'-','A','B','C', 'D', 'E', 'F', 'G'};
 	bool win=false;
 	llenarMatriz(arreglo, size);
 	do{
@@ -36,6 +38,7 @@ int main(int argc, char const *argv[]){
 					if(xPos>=0&&xPos<=6&&yPos>=0&&yPos<=6){
 						bool movJug1= validacionMove(arreglo, xPos, yPos, xPieza, yPieza);
 						if (movJug1==false){
+							imprimirLetras(letras, 8);
 							conversion(arreglo, xPos, yPos, 1);
 							movimiento(arreglo, size, xPos, yPos, 1);	
 						}
@@ -102,6 +105,21 @@ void deletePunteros(int** arreglo, int size){
 }
 void imprimirMatriz(int** array, int size){
 	for (int i = 0; i < size; ++i){
+		if (i==0){
+			cout<<'A';
+		}else if (i==1){
+			cout<<'B';
+		}else if (i==2){
+			cout<<'C';
+		}else if (i==3){
+			cout<<'D';
+		}else if (i==4){
+			cout<<'E';
+		}else if (i==5){
+			cout<<'F';
+		}else if (i==6){
+			cout<<'G';
+		}
 		for (int j = 0; j < size; ++j){
 			cout << setw(6) << array[i][j];	
 		}
@@ -255,4 +273,14 @@ void conversion(int** array, int xPos, int yPos, int pieza){
 			}
 		}
 	}
+}
+void imprimirLetras(char* array, int size){
+	for (int i = 0; i < size; ++i){
+		cout<<array[i]<<setw(6);
+	}
+	cout<<setw(-6);
+	cout<<endl;
+}
+void revisarGanador(int** array, int size, int pieza1, int pieza2){
+
 }
