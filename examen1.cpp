@@ -33,9 +33,14 @@ int main(int argc, char const *argv[]){
 					cin>>xPos;
 					cout<<"Ingrese y en el tablero (de 0 a 6): ";
 					cin>>yPos;
-					bool movJug1= validacionMove(arreglo, xPos, yPos, xPieza, yPieza);
-					if (movJug1==false){
-						cout<<"Yay!";
+					if(xPos>=0&&xPos<=6&&yPos>=0&&yPos<=6){
+						bool movJug1= validacionMove(arreglo, xPos, yPos, xPieza, yPieza);
+						if (movJug1==false){
+							cout<<"Yay!"<<endl;
+						}
+					}else{
+						cout<<"Esta posicion no existe"<<endl;
+						bandera=2;
 					}
 				}
 				bandera=2;
@@ -57,10 +62,15 @@ int main(int argc, char const *argv[]){
 					cin>>xPos;
 					cout<<"Ingrese y en el tablero (de 0 a 6): ";
 					cin>>yPos;
-					bool movJug2= validacionMove(arreglo, xPos, yPos, xPieza, yPieza);
-					if (movJug2==false){
-						cout<<"Yay!";
-					}			
+					if(xPieza>=0&&xPieza<=6&&yPieza>=0&&yPieza<=6){
+						bool movJug2= validacionMove(arreglo, xPos, yPos, xPieza, yPieza);
+						if (movJug2==false){
+							cout<<"Yay!"<<endl;
+						}			
+					}else{
+						cout<<"Esta posicion no existe"<<endl;
+						bandera=1;
+					}
 				}
 				bandera=1;
 			}else{
@@ -116,10 +126,9 @@ bool validacionPieza(int** array, int x, int y, int pieza){
 	return false;
 }
 bool validacionMove(int** array, int xPos, int yPos, int xPieza, int yPieza){
-	int pos1=abs(xPos-xPieza);
-	int pos2=abs(yPos-yPieza);
-	if (pos1!=1||pos1!=2||pos2!=1||pos2!=2){
-		cout<<"Esta movimiento es invalido "<<endl;
+	if ((xPos!=xPieza+1&&xPos!=xPieza-1&&xPos!=xPieza+2&&xPos!=xPieza-2&&xPos!=xPieza)
+		||(yPos!=yPieza+1&&yPos!=yPieza-1&&yPos!=yPieza+2&&yPos!=yPieza-2&&yPos!=yPieza)){
+		cout<<"El movimiento es invalido"<<endl;
 		return true;
 	}
 	return false;
