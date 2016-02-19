@@ -13,6 +13,7 @@ void imprimirMatriz(int** array, int size);
 void llenarMatriz(int** array, int size);
 bool validacionPieza(int** array, int x, int y, int pieza);
 bool validacionMove(int** array, int x, int y, int piezaX,int piezaY);
+void movimiento(int** array,int size, int xPos, int yPos, int pieza);
 
 int main(int argc, char const *argv[]){
 	int size=7, bandera=1, xPieza, yPieza, xPos, yPos;
@@ -36,7 +37,7 @@ int main(int argc, char const *argv[]){
 					if(xPos>=0&&xPos<=6&&yPos>=0&&yPos<=6){
 						bool movJug1= validacionMove(arreglo, xPos, yPos, xPieza, yPieza);
 						if (movJug1==false){
-							cout<<"Yay!"<<endl;
+							movimiento(arreglo, size, xPos, yPos, 1);
 						}
 					}else{
 						cout<<"Esta posicion no existe"<<endl;
@@ -65,7 +66,7 @@ int main(int argc, char const *argv[]){
 					if(xPieza>=0&&xPieza<=6&&yPieza>=0&&yPieza<=6){
 						bool movJug2= validacionMove(arreglo, xPos, yPos, xPieza, yPieza);
 						if (movJug2==false){
-							cout<<"Yay!"<<endl;
+							movimiento(arreglo, size, xPos, yPos, 5);
 						}			
 					}else{
 						cout<<"Esta posicion no existe"<<endl;
@@ -131,5 +132,13 @@ bool validacionMove(int** array, int xPos, int yPos, int xPieza, int yPieza){
 		cout<<"El movimiento es invalido"<<endl;
 		return true;
 	}
+	if (array[xPos][yPos]!=0){
+		cout<<"El movimiento es invalido"<<endl;
+		return true;
+	}
 	return false;
+}
+void movimiento(int** array,int size, int xPos, int yPos, int pieza){
+	array[xPos][yPos]=pieza;
+	imprimirMatriz(array, size);
 }
