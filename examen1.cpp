@@ -14,6 +14,8 @@ bool validacionMove(int** array, int x, int y, int piezaX,int piezaY);
 void movimiento(int** array,int size, int xPos, int yPos, int pieza);
 void conversion(int** array, int xPos, int yPos, int pieza);
 void imprimirLetras(char* letras, int num);
+bool revisarGanador(int** array, int size);
+int ganador(int** array, int size);
 
 int main(int argc, char const *argv[]){
 	int size=7, bandera=1, xPieza, yPieza, xPos, yPos;
@@ -40,7 +42,24 @@ int main(int argc, char const *argv[]){
 						if (movJug1==false){
 							imprimirLetras(letras, 8);
 							conversion(arreglo, xPos, yPos, 1);
-							movimiento(arreglo, size, xPos, yPos, 1);	
+							movimiento(arreglo, size, xPos, yPos, 1);
+							bool chequeo=revisarGanador(arreglo, size);
+							if (chequeo==true){
+								int ganar=ganador(arreglo, size);
+								if (ganar==1){
+									cout<<"Gano el Jugador 1!!!"<<endl;
+									win=true;
+									break;
+								}else if (ganar==2){
+									cout<<"Gano el Jugador 2!!!"<<endl;
+									win=true;
+									break;
+								}else if (ganar==3){
+									cout<<"Empate...."<<endl;
+									win=true;
+									break;
+								}
+							}	
 						}
 					}else{
 						cout<<"Esta posicion no existe"<<endl;
@@ -69,8 +88,26 @@ int main(int argc, char const *argv[]){
 					if(xPieza>=0&&xPieza<=6&&yPieza>=0&&yPieza<=6){
 						bool movJug2= validacionMove(arreglo, xPos, yPos, xPieza, yPieza);
 						if (movJug2==false){
+							imprimirLetras(letras, 8);
 							conversion(arreglo, xPos, yPos, 5);
-							movimiento(arreglo, size, xPos, yPos, 5);	
+							movimiento(arreglo, size, xPos, yPos, 5);
+							bool chequeo=revisarGanador(arreglo, size);
+							if (chequeo==true){
+								int ganar=ganador(arreglo, size);
+								if (ganar==1){
+									cout<<"Gano el Jugador 1!!!"<<endl;
+									win=true;
+									break;
+								}else if (ganar==2){
+									cout<<"Gano el Jugador 2!!!"<<endl;
+									win=true;
+									break;
+								}else if (ganar==3){
+									cout<<"Empate...."<<endl;
+									win=true;
+									break;
+								}
+							}	
 						}			
 					}else{
 						cout<<"Esta posicion no existe"<<endl;
@@ -281,6 +318,32 @@ void imprimirLetras(char* array, int size){
 	cout<<setw(-6);
 	cout<<endl;
 }
-void revisarGanador(int** array, int size, int pieza1, int pieza2){
-
+bool revisarGanador(int** array, int size){
+	for (int i = 0; i < size; ++i){
+		for (int j = 0; j < size; ++j){
+			if (array[i][j]==0){
+				return false;
+			}
+		}
+	}
+	return true;
+}
+int ganador(int** array, int size){
+	int contJug1=0, contJug2=0;
+	for (int i = 0; i < size; ++i){
+		for (int j = 0; j < size; ++j){
+			if (array[i][j]==1){
+				contJug1++;
+			}else if (array[i][j]){
+				contJug2++;
+			}
+		}
+	}
+	if (contJug1>contJug2){
+		return 1;
+	}else if (contJug2>contJug1){
+		return 2;
+	}else if (contJug1==contJug2){
+		return 3;
+	}
 }
