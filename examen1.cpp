@@ -1,11 +1,9 @@
 #include <iostream>
 #include <iomanip>
-#include <cmath>
 using std::cout;
 using std::cin;
 using std::endl;
 using std::setw;
-using std::abs;
 
 int**newArray();
 void deletePunteros(int** arreglo, int size);
@@ -38,8 +36,8 @@ int main(int argc, char const *argv[]){
 					if(xPos>=0&&xPos<=6&&yPos>=0&&yPos<=6){
 						bool movJug1= validacionMove(arreglo, xPos, yPos, xPieza, yPieza);
 						if (movJug1==false){
-							movimiento(arreglo, size, xPos, yPos, 1);
 							conversion(arreglo, xPos, yPos, 1);
+							movimiento(arreglo, size, xPos, yPos, 1);	
 						}
 					}else{
 						cout<<"Esta posicion no existe"<<endl;
@@ -68,8 +66,8 @@ int main(int argc, char const *argv[]){
 					if(xPieza>=0&&xPieza<=6&&yPieza>=0&&yPieza<=6){
 						bool movJug2= validacionMove(arreglo, xPos, yPos, xPieza, yPieza);
 						if (movJug2==false){
-							movimiento(arreglo, size, xPos, yPos, 5);
 							conversion(arreglo, xPos, yPos, 5);
+							movimiento(arreglo, size, xPos, yPos, 5);	
 						}			
 					}else{
 						cout<<"Esta posicion no existe"<<endl;
